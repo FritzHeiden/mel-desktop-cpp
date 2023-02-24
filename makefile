@@ -1,11 +1,11 @@
 CC=g++
-LIBS=`pkg-config gtkmm-4.0 --cflags --libs`
+ARGS=`pkg-config gtkmm-4.0 --cflags --libs`
 
-gtk-app: simple.o
-	$(CC) -std=c++17 -o app simple.o $(LIBS)
+gtk-app: *.o
+	$(CC) -std=c++17 -o app $^ $(ARGS)
 
-simple.o: src/simple.cc
-	$(CC) -std=c++17 -c src/simple.cc $(LIBS)
+%.o: src/%.cc
+	$(CC) -std=c++17 -c $^ $(ARGS)
 
 clean:
 	rm *.o app
