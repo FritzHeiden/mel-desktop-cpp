@@ -1,6 +1,7 @@
 #include "glibmm/refptr.h"
 #include "gtkmm/applicationwindow.h"
 #include "gtkmm/box.h"
+#include "gtkmm/label.h"
 #include "sigc++/functors/ptr_fun.h"
 #include <gtkmm/application.h>
 #include <gtkmm/box.h>
@@ -30,6 +31,10 @@ void on_activated(Glib::RefPtr<Gtk::Application> app) {
   std::cout << "activated" << std::endl;
   auto window = new MainWindow(app);
   app->add_window(*window);
+
+  auto label = new Gtk::Label("Hello World", false);
+  window->set_child(*label);
+
   window->present();
 }
 
