@@ -27,13 +27,22 @@ MainWindow::MainWindow(Glib::RefPtr<Gtk::Application> app) : Gtk::ApplicationWin
   //box.append(button2);
 }
 
+void on_click(Gtk::Window *window) {
+  std::cout << "click" << std::endl;
+  window->destroy();
+}
+
 void on_activated(Glib::RefPtr<Gtk::Application> app) {
   std::cout << "activated" << std::endl;
   auto window = new MainWindow(app);
   app->add_window(*window);
 
-  auto label = new Gtk::Label("Hello World", false);
-  window->set_child(*label);
+  //auto label = new Gtk::Label("Hello World", false);
+  //window->set_child(*label);
+
+  auto button = new Gtk::Button("Click Me!", false);
+  button->signal_clicked().connect(sigc::bind(sigc::ptr_fun(&on_click), window));
+  window->set_child(*button);
 
   window->present();
 }
