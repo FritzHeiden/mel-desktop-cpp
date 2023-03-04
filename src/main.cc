@@ -7,7 +7,7 @@
 #include "gtkmm/label.h"
 #include "gtkmm/stylecontext.h"
 #include "gtkmm/styleprovider.h"
-#include "main-view.h"
+#include "main-view/main-view.h"
 #include "sigc++/functors/ptr_fun.h"
 #include <gtkmm/application.h>
 #include <gtkmm/box.h>

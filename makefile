@@ -1,11 +1,17 @@
 CC=g++
 ARGS=`pkg-config gtkmm-4.0 --cflags --libs`
+OBJDIR=obj
+SRCDIR=src
+SRC=$(shell find $(SRCDIR) -name '*.cc')
+OBJ=$(SRC:$(SRCDIR)/%.cc=$(OBJDIR)/%.o)
 
-gtk-app: *.o
+$(info $(OBJ))
+
+gtk-app: $(OBJ)
 	$(CC) -std=c++17 -o app $^ $(ARGS)
 
-%.o: src/%.cc
-	$(CC) -std=c++17 -c $^ $(ARGS)
+$(OBJDIR)/%.o: $(SRCDIR)/%.cc
+	mkdir -p "$(shell dirname $@)"; $(CC) -std=c++17 -c $^ -o $@ $(ARGS)
 
 clean:
-	rm *.o app
+	rm -r $(OBJDIR) app

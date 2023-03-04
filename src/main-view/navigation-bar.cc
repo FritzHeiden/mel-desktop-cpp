@@ -30,4 +30,8 @@ NavigationBar::NavigationBar(Glib::RefPtr<Gtk::Application> app,
 
   Gtk::SearchEntry *searchEntry{new Gtk::SearchEntry()};
   rightBox->append(*searchEntry);
+
+  Gtk::Button *settingsButton{new Gtk::Button()};
+  settingsButton->set_label("s");
+  rightBox->append(*settingsButton);
 }
